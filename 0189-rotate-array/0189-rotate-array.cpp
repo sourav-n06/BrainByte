@@ -16,7 +16,6 @@ public:
         int n = nums.size();
         int rem = k % n;
         
-
         Reverse(nums, 0, n-1);
         Reverse(nums, 0, rem - 1);
         Reverse(nums, rem , n-1);

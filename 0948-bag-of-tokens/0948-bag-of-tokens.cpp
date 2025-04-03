@@ -21,8 +21,8 @@ public:
         }
 
         while(i <= j && power >= token[i]) {
-            i++;
             power -= token[i];
+            i++;
             scr++;
         }
 

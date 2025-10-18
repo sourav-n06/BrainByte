@@ -5,6 +5,41 @@ public:
         int water = 0;
         int n = height.size();
 
+        int left = 0;
+        int right = n - 1;
+        int leftbar = height[0];
+        int rightbar = height[n - 1];
+
+        while(left < right) {
+            if(leftbar < rightbar) {
+                if(leftbar < height[left]) {
+                    leftbar = height[left];
+                } else {
+                    water += leftbar - height[left];
+                    left++;
+                }
+            } else {
+                if(rightbar < height[right]) {
+                    rightbar = height[right];
+                } else {
+                    water += rightbar - height[right];
+                    right--;
+                }
+            }
+        }
+        return water;
+    }
+};
+
+/*
+TC O(N) , SC O(N)
+class Solution {
+public:
+    int trap(vector<int>& height) {
+
+        int water = 0;
+        int n = height.size();
+
         vector<int> lmax(n, 0);
         vector<int> rmax(n, 0);
 
@@ -26,3 +61,5 @@ public:
 
     }
 };
+
+*/

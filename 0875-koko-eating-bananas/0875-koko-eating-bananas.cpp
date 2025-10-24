@@ -2,7 +2,8 @@ class Solution {
     bool canEatAllBanana(vector<int>& piles, int mid, int h) {
         int speed = 0;
         for(int p : piles) {
-            speed += ceil((double)p / mid);
+            speed += (p / mid);
+            if(p % mid) speed++;
             if(speed > h) return false;
         }
         return true;

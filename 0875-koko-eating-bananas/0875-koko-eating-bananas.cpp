@@ -1,24 +1,29 @@
 class Solution {
-private:
-    long long total_time(vector<int> piles, int n)
-    {
-        long long total_hour = 0;
-        for(int i = 0; i < piles.size(); i++)
-            total_hour = total_hour + ceil((double)piles[i] / (double)n);
-        return total_hour;
+    bool canEatAllBanana(vector<int>& piles, int mid, int h) {
+        int speed = 0;
+        for(int p : piles) {
+            speed += ceil((double)p / mid);
+            if(speed > h) return false;
+        }
+        return true;
     }
 public:
-    int minEatingSpeed(vector<int>& piles, int h) 
-    {
+    int minEatingSpeed(vector<int>& piles, int h) {
+
+        int speed = 0;
         int left = 1;
-        int right = *max_element(piles.begin(),piles.end());
-        while(left <= right){
+        int right = 0;
+        for(int p : piles) right = max(p, right);
+
+        while(left <= right) {
             int mid = (left + right) / 2;
-            if(total_time(piles, mid) <= h) 
+            if(canEatAllBanana(piles, mid, h)) {
+                speed = mid;
                 right = mid - 1;
-            else 
+            } else 
                 left = mid + 1;
         }
-        return left;
+
+        return speed;
     }
 };
